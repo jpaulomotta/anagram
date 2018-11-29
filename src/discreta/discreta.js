@@ -1,3 +1,9 @@
+/**
+ * Este arquivo é responsavel pelas funções de Matematica Discreta relativas a lógica do programa.
+ * As formulas foram extraidas do livro "Introdução à Analise Combinatória", SANTOS, J. P. O. et al  quarta edição
+ * 
+ * AUTOR: João Paulo Motta Oliveira Silva
+ */
 
 var f = [];
 function fatorial (n) {
@@ -69,7 +75,7 @@ function anagrama(texto) {
             quantidade[simbolo] += 1
         }
     }
-    console.log(quantidade)
+    
     //Calcula total de permutações possiveis
     let n = texto.length
     let nTotal = permutacaoRepeticao(n, Object.values(quantidade))
@@ -77,7 +83,7 @@ function anagrama(texto) {
     
     if(s === 0) {
         //Se não houver espaços no texto, retorne nTotal
-        return nTotal
+        return {total: nTotal, quantidade}
     } else if(s === 1) {
         //se s = 1 então devemos calcular |total| - |a2 U a3| já que não existira repetição
         //pelo principio inclusao e exclusao isso é 
@@ -86,7 +92,7 @@ function anagrama(texto) {
         // do texto
         let a2 = permutacaoRepeticao(n-1, Object.values( {...quantidade, ' ': s-1} ))
         let a3 = a2
-        return nTotal - a2 - a3 + 0
+        return {total: nTotal - a2 - a3 + 0, quantidade}
     } else if(s >= 2) {
         let a1 = permutacaoRepeticao((n - s) + 1, Object.values({...quantidade, ' ': 1}))
         let a2 = permutacaoRepeticao(n-1, Object.values( {...quantidade, ' ': s-1} ))
@@ -100,7 +106,7 @@ function anagrama(texto) {
         } else {
             a1Ea2Ea3 = permutacaoRepeticao((n-2) - (s-2) + 1, Object.values({...quantidade, ' ': 1}))
         }
-        return nTotal - a1 - a2 - a3 + a1Ea2 + a1Ea3 + a2Ea3 - a1Ea2Ea3
+        return {total: nTotal - a1 - a2 - a3 + a1Ea2 + a1Ea3 + a2Ea3 - a1Ea2Ea3, quantidade}
     }
 }
 

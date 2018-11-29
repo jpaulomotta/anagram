@@ -21,9 +21,10 @@ test('permutação com repetição', () => {
 
 test('anamgrama', () => {
     //Capitulo 3, Sesão 4
-    expect(anagrama('aaabbcc')).toEqual(210)
+    expect(anagrama('aaabbcc').total).toEqual(210)
 
-    expect(anagrama('aabbccc ')).toEqual(1260)
+    expect(anagrama('aabbccc ').total).toEqual(1260)
 
-    expect(anagrama('FRASES COM 20 LETRAS')).toEqual(6046686277632000)
+    expect(anagrama('FRASES COM 20 LETRAS').total).toEqual(6046686277632000)
+    expect(anagrama('FRASES COM X').total).toEqual(99792000)
 })
